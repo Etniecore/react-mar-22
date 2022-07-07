@@ -26,7 +26,7 @@ function App() {
 
                   <Route path={'/comments'}
                          element={<CommentsPage/>}>
-                      <Route path={':id'}
+                      <Route path={':postId'}
                              element={<PostsPage/>}/>
                   </Route>
 

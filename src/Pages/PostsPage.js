@@ -6,13 +6,14 @@ import {PostsComponents} from "../Services";
 
 export default function PostsPage(){
     const params =useParams();
-    const {id} = params;
+    const {postId} = params;
     const [posts,setPost] = useState([]);
+
     useEffect(()=>{
-        apiService.post(id)
+        apiService.post(postId)
             .then(response=>response.json())
             .then(data=>setPost([...data]))
-    },[id])
+    },[postId])
 
     return(
         <div>
