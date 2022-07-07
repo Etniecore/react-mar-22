@@ -8,7 +8,7 @@ export default function TodosPage(){
 
     useEffect(()=>{
         apiService.todos().then(response=>response.json())
-            .then(data=>setTodos(data));
+            .then(data=>setTodos([...data]));
     },[])
 
 

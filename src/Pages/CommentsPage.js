@@ -11,7 +11,7 @@ export default function CommentsPage(){
 
     useEffect(()=>{
         apiService.comments().then(response=>response.json())
-            .then(data=>setComments(data));
+            .then(data=>setComments([...data]));
     },[]);
 
     return(

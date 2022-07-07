@@ -8,7 +8,7 @@ export default function AlbumsPage(){
 
     useEffect(()=>{
         apiService.albums().then(response=>response.json())
-            .then(data=>setAlbums(data))
+            .then(data=>setAlbums([...data]))
     },[])
 
 
