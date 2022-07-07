@@ -30,7 +30,7 @@ export default function Cars(){
     const updateCar = async (obj)=> {
         const result = [...cars]; //copies array cars.
         const found =result.find(item=>item.id===car.id)//finding car in array cars with the same id.
-        Object.assign(found,car);// changing old car to an edited one.
+        Object.assign(found,obj);// changing old car to an edited one.
         setCars(result);// setting result to array cars;
         setCar(null); // after editing form should be changed back to SAVE
     };
