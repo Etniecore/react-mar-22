@@ -9,6 +9,8 @@ class Comments extends Component {
     constructor(props) {
         super(props);
         this.apiService = new ApiService();
+    }
+    componentDidMount() {
         this.apiService.getComments().then(data=>this.setState({comments:data}))
     }
 
