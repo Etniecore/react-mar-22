@@ -8,8 +8,11 @@ class Posts extends Component {
 
     constructor() {
         super();
-        ApiService.getPosts().then(data=>this.setState({posts:data}))
     }
+
+componentDidMount() {
+    ApiService.getPosts().then(data=>this.setState({posts:data}))
+}
 
     render() {
         return (
