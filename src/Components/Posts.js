@@ -6,10 +6,6 @@ import {ApiService, Post} from "../Services";
 class Posts extends Component {
     state = {posts:[]};
 
-    constructor() {
-        super();
-    }
-
 componentDidMount() {
     ApiService.getPosts().then(data=>this.setState({posts:data}))
 }
