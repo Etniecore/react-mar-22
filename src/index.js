@@ -3,11 +3,34 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import {BrowserRouter} from "react-router-dom";
+
+
+let store = createStore((state= {users:[],user:null},action)=> {
+
+    switch (action.type){
+        case 'get_users':
+            return {...state, users: action.payload}
+        case 'one_user':
+            return {...state, user: state.users.find(user=>user.id==action.payload)}
+        default:
+            return state;
+    }
+
+
+
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+      <BrowserRouter>
+      <Provider store={store}>
+          <App />
+      </Provider>
+      </BrowserRouter>
   </React.StrictMode>
 );
 
