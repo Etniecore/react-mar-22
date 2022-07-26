@@ -1,59 +1,62 @@
 // 1) створити інтерфейс на основі цього объекта
-
+interface ICore{
+    flight: number,
+    core: {
+        reuse_count: number,
+        status: string|boolean
+    }
+}
+interface IPayload{
+    payload_type: string,
+    payload_mass_kg: number,
+    payload_mass_lbs: number
+}
 interface IHomeWork {
     mission_name: string,
-    launch_date_local: number,
+    launch_date_local: string,
     launch_site: {
         site_name_long: string
     },
     links: {
-        article_link: boolean,
+        article_link: string,
         video_link: string
     },
     rocket: {
         rocket_name: string,
         first_stage: {
-            cores: [
-                {
-                    flight: number,
-                    core: {
-                        reuse_count: number,
-                        status: string
-                    }
-                }
-            ]
+            cores:ICore[]
         },
         second_stage: {
-            payloads: [
-                {
-                    payload_type: string,
-                    payload_mass_kg: number,
-                    payload_mass_lbs: number
-                }
-            ]
+            payloads: IPayload[]
+
         }
     }
 }
+
 // 2) протипізувати функції:
+interface IUser {
+    name: string,
+    age: number,
+    gender: string
+}
 
-
-const user:{name:string,age:number,gender:string} = {
-    name:"Max",
-    age:18,
-    gender:'male'
+const user:IUser = {
+    name: "Max",
+    age: 18,
+    gender: 'male'
 }
 
 
-function sum(a:number,b:number):number{
-    return a+b
+function sum(a: number, b: number): number {
+    return a + b
 }
 
-function showSum(a:number,b:number):void{
+function showSum(a: number, b: number): void {
     console.log(a + b);
 }
 
-function incAge(someUser:{age:number}, inc:number):object{
-    someUser.age+=inc
+function incAge(someUser: { age: number }, inc: number): object {
+    someUser.age += inc
     return someUser
 }
 
