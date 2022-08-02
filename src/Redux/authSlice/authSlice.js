@@ -8,10 +8,10 @@ const initialState = {
 
 const register = createAsyncThunk(
     'authSlice/register',
-    async ({user},{rejectWithValue})=>{
-        try{
-            await authService.register(user);
-        }catch (e){
+    async ({user}, {rejectWithValue}) => {
+        try {
+            await authService.register(user);//save user to API
+        } catch (e) {
             return rejectWithValue(e.response.data)
         }
     }
@@ -19,17 +19,16 @@ const register = createAsyncThunk(
 
 const login = createAsyncThunk(
     'authSlice/login',
-    async ({user},{rejectWithValue})=>{
+    async ({user}, {rejectWithValue}) => {
         try {
-            await authService.login(user);
-        } catch (e){
+            const {data} = await authService.login(user);//after success login returns you tokens(access,refresh)return data;
+            return data;
+        } catch (e) {
             return rejectWithValue(e.response.data);
         }
 
     }
 )
-
-
 
 
 const authSlice = createSlice({
@@ -38,8 +37,12 @@ const authSlice = createSlice({
         reducers: {},
         extraReducers: (builder) => {
             builder
+                .addCase(login.fulfilled, (state, action) => {//when login process fulfilled,it returns token into action.payload,so, we can save them
+                    state.isAuth = true;
+                    authService.saveTokens(action.payload);
+                })
                 .addDefaultCase((state, action) => {
-                    const [type] = action.type.split('/').splice(-1);
+                    const [type] = action.type.split('/').splice(-1);//it is default for all action, for example authSlice/login/rejected, so, we slice it and take the last part
                     if (type === 'rejected') {
                         state.errors = action.payload
                     } else {

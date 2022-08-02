@@ -20,12 +20,11 @@ export default function Form() {
     },[updateCar])
 
 
-
     const submit = async (obj)=> {
         if(updateCar){
-            await dispatch(carActions.update({id:updateCar.id, obj}))
+            await dispatch(carActions.update({id:updateCar.id, obj}))//send id(state.updateCar.id) of updated car and new car to Async Thunk
         }else{
-            await dispatch(carActions.add({obj:obj}));
+            await dispatch(carActions.add({obj:obj}));// adds new car to state.cars
         }
         reset();
     };
